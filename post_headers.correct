@@ -1,0 +1,77 @@
+POST /cgi-bin/new-judge HTTP/1.1
+Host: judge2.vdi.mipt.ru
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: ru
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryeSYmmpQfXLF84mxH
+Origin: http://judge2.vdi.mipt.ru
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Safari/604.1.38
+Referer: http://judge2.vdi.mipt.ru/cgi-bin/new-judge
+Upgrade-Insecure-Requests: 1
+DNT: 1
+Content-Length: 1543
+Cookie: EJSID=38b590e299b2498d; _ga=GA1.2.988423513.1466538033; __utma=267982226.988423513.1466538033.1505933136.1508370846.33; __utmz=267982226.1503005360.26.4.utmcsr=away.vk.com|utmccn=(referral)|utmcmd=referral|utmcct=/away.php; _ym_uid=1466538032630114975
+Connection: close
+
+------WebKitFormBoundaryeSYmmpQfXLF84mxH
+Content-Disposition: form-data; name="SID"
+
+056a499b55b37d5c
+------WebKitFormBoundaryeSYmmpQfXLF84mxH
+Content-Disposition: form-data; name="problem"
+
+62
+------WebKitFormBoundaryeSYmmpQfXLF84mxH
+Content-Disposition: form-data; name="variant"
+
+17
+------WebKitFormBoundaryeSYmmpQfXLF84mxH
+Content-Disposition: form-data; name="lang_id"
+
+29
+------WebKitFormBoundaryeSYmmpQfXLF84mxH
+Content-Disposition: form-data; name="text_form"
+
+Sending from browser
+------WebKitFormBoundaryeSYmmpQfXLF84mxH
+Content-Disposition: form-data; name="file"; filename="solution.c"
+Content-Type: application/octet-stream
+
+// This solution was sent via Python Script
+#include <stdio.h>
+typedef struct Point
+{
+        int x;
+        int y;
+} Point;
+typedef struct Coord
+{
+        Point rb;
+        Point lt;
+} Coord;
+
+int main ()
+{
+        int n, i, s;
+        Coord a[1000];
+        scanf ("%d", &n);
+        s = 0;
+        for (i = 0; i < n; i++)
+        {
+                scanf ("%d%d%d%d", &a[i].lt.x, &a[i].lt.y, &a[i].rb.x, &a[i].rb.y);
+        }
+        for (i = 0; i < n-1; i++)
+        {
+                if ((a[i].lt.x >= a[n-1].lt.x) && (a[i].lt.y <= a[n-1].lt.y) && (a[i].rb.x <= a[n-1].rb.x) && (a[i].rb.y >= a[n-1].rb.y))
+                {
+                        s++;
+                }
+        }
+        printf ("%d\n", s);
+        return 0;
+}
+
+------WebKitFormBoundaryeSYmmpQfXLF84mxH
+Content-Disposition: form-data; name="action_40"
+
+Send!
+------WebKitFormBoundaryeSYmmpQfXLF84mxH--
