@@ -50,7 +50,7 @@ coverage.xml
 *.pot
 
 # Django stuff:
-*.log
+# *.log
 local_settings.py
 
 # Flask stuff:
@@ -104,3 +104,9 @@ solutions/
 
 # ssh keys
 *.pem
+
+# File system objects
+.DS_Store
+
+# Solutions
+solution*.c
