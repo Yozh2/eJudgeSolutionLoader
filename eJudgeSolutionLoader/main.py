@@ -63,7 +63,7 @@ if __name__ == "__main__":
     # Read the solution from the file into string object
     with open(solution_path, 'r', encoding='utf-8') as file_to_send:
         file_code = file_to_send.read()
-        print('File {} was read.'.format(file_to_send))
+        print('File {} was read.'.format(file_to_send.name))
 
     # Enter HTTP session
     session = requests.Session()
@@ -92,7 +92,7 @@ if __name__ == "__main__":
 
     # POST data to login
     r = requests.post(login_url, data=payload, headers=headers)
-    
+
     cookies = r.cookies.get_dict()
     print('Login successful, cookie:', cookies)
     print(r.url)
