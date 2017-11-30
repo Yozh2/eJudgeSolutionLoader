@@ -6,19 +6,13 @@ Use eJudgeSolutionLoader/main.py -h to get usage help.
 """
 
 import requests
-from urllib.parse import quote
 import argparse
 from sys import argv
 
 # Local imports
-import ejudge_api
-
-def read_code(file_to_read):
-    # Read the solution from the file into string object
-    with open(solution_path, 'r', encoding='utf-8') as file_to_read:
-        file_code = file_to_read.read()
-        print('File {} was read.'.format(file_to_read.name))
-    return file_code
+# import ejudge_api
+from EJudgeSession import EJudgeSession
+from EjudgeSolution import EJudgeSolution
 
 if __name__ == "__main__":
 
@@ -54,14 +48,19 @@ if __name__ == "__main__":
     problem = str(ARGS.PROBLEM)
     variant = str(ARGS.VARIANT)
     solution_path = ARGS.SOLUTION
-    lang_id = str(ARGS.lang_id)
+    lang_id = str(ARGS.lang_id)         # old version for ejudge_api
     compiler = str(ARGS.compiler)
     login = ARGS.login
     password = ARGS.password
 
     # ==============================================================================================
 
-    file_code = read_code(solution_path)
-    session, url, SID, cookies = ejudge_api.sign_in(contest_id, login, password)
+    # Commented version shows ejudge_api variant of usage
+    # file_code = read_code(solution_path)
+    # url, SID, cookies = ejudge_api.sign_in(contest_id, login, password)
+    session = EJudgeSession(contest_id, login, password)
+    session.sign_in()
 
-    ejudge_api.send_solution(SID, cookies, contest_id, problem, variant, lang_id, file_code)
+    # ejudge_api.send_solution(SID, cookies, contest_id, problem, variant, lang_id, file_code)
+    solution = EJudgeSolution(contest_id, problem, variant, compiler, solution_path)
+    session.send_solution(solution)

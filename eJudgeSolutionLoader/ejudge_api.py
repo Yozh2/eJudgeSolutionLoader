@@ -26,9 +26,6 @@ def sign_in(contest_id, login, password):
     Returns the HTTP session, response URL, session_id and cookies.
     """
 
-    # Enter HTTP session
-    session = requests.Session()
-
     # Setup basic parameters for login
     login_url = 'http://judge2.vdi.mipt.ru/cgi-bin/new-judge'
     host = 'judge2.vdi.mipt.ru'
@@ -57,7 +54,7 @@ def sign_in(contest_id, login, password):
     SID = r.url[r.url.find('SID')+4:r.url.find('SID')+20]
     print('SID:', SID)
 
-    return session, r.url, SID, cookies
+    return r.url, SID, cookies
 
 def send_solution(SID, cookies, contest_id, problem, variant, lang_id, file_code):
 
