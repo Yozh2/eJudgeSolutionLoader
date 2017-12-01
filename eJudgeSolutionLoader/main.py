@@ -1,4 +1,4 @@
-#/usr/local/bin/python3
+#!/usr/local/bin/python3
 """
 eJudgeSolutionLoader - a simple Python3 eJudge solution uploader.
 
@@ -12,7 +12,7 @@ from sys import argv
 # Local imports
 # import ejudge_api
 from EJudgeSession import EJudgeSession
-from EjudgeSolution import EJudgeSolution
+from EJudgeSolution import EJudgeSolution
 
 if __name__ == "__main__":
 
@@ -38,8 +38,6 @@ if __name__ == "__main__":
                             help="The compiler to be used to build the SOLUTION.")
         parser.add_argument("--lang_id", type=int, nargs='?', default=29,
                             help="Language ID on eJudge for appropriate compiler.")
-        parser.add_argument("--clean", action='store_true',
-                            help="Clean logs and temporary files.")
         return parser.parse_args()
 
     # init main variables
@@ -58,9 +56,10 @@ if __name__ == "__main__":
     # Commented version shows ejudge_api variant of usage
     # file_code = read_code(solution_path)
     # url, SID, cookies = ejudge_api.sign_in(contest_id, login, password)
+    # ejudge_api.send_solution(SID, cookies, contest_id, problem, variant, lang_id, file_code)
+
     session = EJudgeSession(contest_id, login, password)
     session.sign_in()
 
-    # ejudge_api.send_solution(SID, cookies, contest_id, problem, variant, lang_id, file_code)
     solution = EJudgeSolution(contest_id, problem, variant, compiler, solution_path)
     session.send_solution(solution)
